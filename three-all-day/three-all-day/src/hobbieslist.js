@@ -1,5 +1,5 @@
 import React from "react";
-import Hobbies from "./Hobbies";
+import Hobbies from "./hobbies";
 
 function HobbiesList({ hobbies, handleDeleteHobbies }) {
 	const deleteHobbies = async (hobbiesId) => {

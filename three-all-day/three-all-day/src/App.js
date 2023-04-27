@@ -1,53 +1,58 @@
-import { useState } from 'react'
-import hobbies from "./db.json"
-
-import './App.css'
+import React from "react";
+import HobbiesContainer from "./HobbiesContainer";
 
 function App() {
 
-    
-      
-      const handleAddHobbies = (hobbies) => {
-		setHobbies([...hobbies, hobbies]);
-	};
-	const handleDeleteHobbies = (hobbiesId) => {
-		const filterHobbies = hobbies.filter(
-			(hobbies) => hobbies.id !== hobbiesId
-		);
+  const [hobbies, setHobbies] = React.useState([]);
+    React.useEffect(() => {
+        fetchHobbies();
+    }, []);
+    const fetchHobbies = async () => {
+        try {
+            const res = await fetch("http://localhost:3000/hobbies");
+            const jsonRes = await res.json();
+            setHobbies(jsonRes);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-		setHobbies(filterHobbies);
-	};
-	const handleSearch = (searchTerm) => {
-		if (searchTerm) {
-			const filteredHobbies = Hobbies.filter((hobbies) => {
-				if (hobbies.description.toLowerCase().match(searchTerm.toLowerCase())) {
-					return true;
-				} else {
-					return false;
-				}
-			});
-			setHobbies(filteredHobbies);
-		} else {
-			fetchHobbies();
-		}
-	};
-	return (
-		<div className="ui raised segment">
-			<div className="ui segment violet inverted">
-				<h2>Three All Day</h2>
-			</div>
-			<AccountContainer
-				handleAddHobbies={handleAddHobbies}
-				hobbies={hobbies}
-				handleSearch={handleSearch}
-				handleDeleteHobbies={handleDeleteHobbies}
-			/>
-       
+
+  const handleAddHobbies = (hobbies) => {
+    setHobbies([...hobbies, hobbies]);
+  };
+  const handleDeleteHobbies = (hobbiesId) => {
+    const filterHobbies = hobbies.filter((hobbies) => hobbies.id !== hobbiesId);
+
+    setHobbies(filterHobbies);
+  };
+  const handleSearch = (searchTerm) => {
+    if (searchTerm) {
+      const filteredHobbies = hobbies.filter((hobbies) => {
+        if (hobbies.description.toLowerCase().match(searchTerm.toLowerCase())) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      setHobbies(filteredHobbies);
+    } else {
+      fetchHobbies();
+    }
+  };
+  return (
+    <div className="ui raised segment">
+      <div className="ui segment violet inverted">
+        <h2>Three All Day</h2>
       </div>
-      
-
+      <HobbiesContainer
+        handleAddHobbies={handleAddHobbies}
+        hobbies={hobbies}
+        handleSearch={handleSearch}
+        handleDeleteHobbies={handleDeleteHobbies}
+      />
+    </div>
   );
 }
-
 
 export default App;

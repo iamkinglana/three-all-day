@@ -7,12 +7,12 @@ function Hobbies({
 	return (
 		<ul>
 			<ul>{name}</ul>
-            <td>
+            
 			
 				<button onClick={() => deleteHobbies(id)}>Delete</button>
-			</td>
+			
 		</ul>
 	);
 }
 
-export default Hobby;g
+export default Hobbies;
