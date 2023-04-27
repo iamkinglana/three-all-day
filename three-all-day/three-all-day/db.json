@@ -1,0 +1,24 @@
+{
+  "hobbies": [
+    {
+      "id": 1,
+      "name": "Playing Football"
+    },
+    {
+      "id": 2,
+      "name": "Playing GTA"
+    },
+    {
+      "id": 3,
+      "name": "Playing Basketball"
+    },
+    {
+      "id": 4,
+      "name": "Coding"
+    },
+    {
+      "id": 5,
+      "name": "Hiking"
+    }
+  ]
+}
